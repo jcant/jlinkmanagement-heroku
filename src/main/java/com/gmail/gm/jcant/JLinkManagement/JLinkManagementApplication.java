@@ -4,18 +4,24 @@ import com.gmail.gm.jcant.JLinkManagement.DomainRouting.JDomainRequestMappingHan
 import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLinkService;
 import com.gmail.gm.jcant.JLinkManagement.JPA.RootLink.JRootLinkService;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserDetailServiceImpl;
+import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserRole;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserService;
+import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUser;
 
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -32,28 +38,31 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @SpringBootApplication
 public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 
-    @Value("${hibernate.dialect}")
-    private String sqlDialect;
+    //@Value("${hibernate.dialect}")
+    //private String sqlDialect;
 
     @Value("${hbm2ddl.auto}")
     private String hbm2dllAuto;
-	
+
+    @Autowired
+    private JUserService userService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(JLinkManagementApplication.class, args);
 	}
-	
+
 
 	@Bean
 	public CommandLineRunner demo(final JUserService userService, final JLinkService linkService, final JRootLinkService rlinkService) {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... strings) throws Exception {
-//				JUser admin = new JUser("admin", "$2a$10$mvuMNa9iOkNJK1LyWLPj9uh.xaICWGjC78iRZkkdF9auHDjZLbjx.", JUserRole.ADMIN);
-//				JUser user = new JUser("user", "$2a$10$mvuMNa9iOkNJK1LyWLPj9uh.xaICWGjC78iRZkkdF9auHDjZLbjx.", JUserRole.USER);
-//
-//				userService.addUser(admin);
-//				userService.addUser(user);
-//
+				JUser admin = new JUser("admin", "$2a$10$mvuMNa9iOkNJK1LyWLPj9uh.xaICWGjC78iRZkkdF9auHDjZLbjx.", JUserRole.ADMIN);
+				JUser user = new JUser("user", "$2a$10$mvuMNa9iOkNJK1LyWLPj9uh.xaICWGjC78iRZkkdF9auHDjZLbjx.", JUserRole.USER);
+
+				userService.addUser(admin);
+				userService.addUser(user);
+
 //				linkService.addLink(new JLink("http://u1.short2.jca:8080/", "http://google.com", admin, new Date(), new Date()));
 //				linkService.addLink(new JLink("http://u2.short2.jca:8080/", "http://gmail.com", admin, new Date(), new Date()));
 //				linkService.addLink(new JLink("q3.com", "jcant.linkedin.com", admin, new Date(), new Date()));
@@ -63,14 +72,14 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 //
 //				rlinkService.addRootLink(new JRootLink("short2.jca:8080"));
 //				rlinkService.addRootLink(new JRootLink("short3.jca:8080"));
-				
+
 				//non unique url - must throws an exception
 				//linkService.addLink(new JLink("u2.com", "user.linkedin.com", user, new Date(), new Date()));
 			}
 		};
 	}
-	
-	
+
+
 
 
     @Bean
@@ -93,8 +102,8 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-        adapter.setShowSql(true);
-        adapter.setDatabasePlatform(sqlDialect);
+        //adapter.setShowSql(true);
+        //adapter.setDatabasePlatform(sqlDialect);
 
         return adapter;
     }
@@ -103,7 +112,7 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
         properties.setProperty("hibernate.hbm2ddl.auto", hbm2dllAuto);
         return properties;
     }
-	
+
     @Bean
     public UrlBasedViewResolver setupViewResolver() {
     	UrlBasedViewResolver resolver = new UrlBasedViewResolver();
@@ -113,27 +122,27 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 
         return resolver;
     }
-    
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
     	registry
         .addResourceHandler("/css/**")
         .addResourceLocations("/resources/css/");
-    	
+
     	registry
     	.addResourceHandler("/images/**")
         .addResourceLocations("/resources/images/");
-    	
+
     	registry
     	.addResourceHandler("/js/**")
         .addResourceLocations("/resources/js/");
-    	
+
     	registry
     	.addResourceHandler("/bootstrap/**")
         .addResourceLocations("/resources/bootstrap/");
     }
-    
-    
+
+
     @Bean
     public UserDetailsService userDetailsService(){
         return new JUserDetailServiceImpl();
@@ -146,4 +155,11 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 		handlerMapping.setInterceptors(getInterceptors());
 		return handlerMapping;
 	}
+
+    @Bean
+    @Primary
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DataSource dataSource() {
+        return DataSourceBuilder.create().build();
+    }
 }
