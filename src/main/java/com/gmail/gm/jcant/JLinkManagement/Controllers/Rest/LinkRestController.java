@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gmail.gm.jcant.JDate;
+import com.gmail.gm.jcant.JDate.JDate;
 import com.gmail.gm.jcant.JLinkManagement.DomainRouting.JDomain;
 import com.gmail.gm.jcant.JLinkManagement.JPA.JOperationInfo;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLink;

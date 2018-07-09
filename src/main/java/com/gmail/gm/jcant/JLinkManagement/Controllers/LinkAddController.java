@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.gmail.gm.jcant.JDate;
+import com.gmail.gm.jcant.JDate.JDate;
 import com.gmail.gm.jcant.JLinkManagement.DomainRouting.JDomain;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLink;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLinkService;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gmail.gm.jcant.JDate;
+import com.gmail.gm.jcant.JDate.JDate;
 
 @Controller
 public class JErrorController implements ErrorController{
