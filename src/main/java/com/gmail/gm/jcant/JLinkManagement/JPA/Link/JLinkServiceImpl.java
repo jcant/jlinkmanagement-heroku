@@ -62,13 +62,21 @@ public class JLinkServiceImpl implements JLinkService{
     @Override
     @Transactional
     public List<JLink> findByUserFree(JUser user, Date date) {
-        return linkRepository.findByUserFree(user, date);
+        if (date != null) {
+        	return linkRepository.findByUserFreeDate(user, date);
+        } else {
+        	return linkRepository.findByUserFree(user);
+        }
     }
     
     @Override
     @Transactional
     public List<JLink> findByUserPaid(JUser user, Date date) {
-        return linkRepository.findByUserPaid(user, date);
+    	if (date != null) {
+        	return linkRepository.findByUserPaidDate(user, date);
+        } else {
+        	return linkRepository.findByUserPaid(user);
+        }
     }
     
     @Override
