@@ -31,7 +31,6 @@ public class JArticle {
 	private String header;
 	
 	@Column(length=10000)
-	@Lob
 	private String text;
 	
 	@OneToOne(fetch = FetchType.EAGER)
