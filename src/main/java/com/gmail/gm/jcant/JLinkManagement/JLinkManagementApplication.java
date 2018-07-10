@@ -89,11 +89,11 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory
-            (DataSource dataSource, JpaVendorAdapter jpaVendeorAdapter)
+            (DataSource dataSource, JpaVendorAdapter jpaVendorAdapter)
     {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource);
-        entityManagerFactory.setJpaVendorAdapter(jpaVendeorAdapter);
+        entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter);
         entityManagerFactory.setJpaProperties(additionalProperties());
         entityManagerFactory.setPackagesToScan("com.gmail.gm.jcant.JLinkManagement");
         return entityManagerFactory;
@@ -104,6 +104,8 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         //adapter.setShowSql(true);
         //adapter.setDatabasePlatform(sqlDialect);
+        //adapter.setDatabase(Database.POSTGRESQL);
+    	//adapter.setGenerateDdl(true);
 
         return adapter;
     }
@@ -156,10 +158,11 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 		return handlerMapping;
 	}
 
-    @Bean
-    @Primary
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource dataSource() {
-        return DataSourceBuilder.create().build();
-    }
+    // @Bean
+    // @Primary
+    // @ConfigurationProperties(prefix = "spring.datasource")
+    // public DataSource dataSource() {
+    //     System.out.println("********** in dataSource()");
+    //     return DataSourceBuilder.create().build();
+    // }
 }
