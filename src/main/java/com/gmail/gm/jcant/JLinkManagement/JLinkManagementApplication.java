@@ -121,8 +121,8 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 				Date dfinish = JDate.incMonth(JDate.setTime(new Date(), "0:0:0"), 2);
 				JLink l1 = new JLink("stark-taiga-34506.herokuapp.com/root1/qqwwee", "google.com", admin, dstart, dfinish, true, true);
 				JLink l2 = new JLink("stark-taiga-34506.herokuapp.com/root1/superadminlink", "gmail.com", admin, dstart, dfinish, true, false);
-				JLink l3 = new JLink("stark-taiga-34506.herokuapp.com/root1/aassdd", "yahoo.com", user, dstart, dfinish, true, true);
-				JLink l4 = new JLink("stark-taiga-34506.herokuapp.com/root1/superuserlink", "github.com", user, dstart, dfinish, true, false);
+				JLink l3 = new JLink("stark-taiga-34506.herokuapp.com/root1/aassdd", "yahoo.com", admin, dstart, dfinish, true, true);
+				JLink l4 = new JLink("stark-taiga-34506.herokuapp.com/root1/superuserlink", "github.com", admin, dstart, dfinish, true, false);
 				
 				linkService.addLink(l1);
 				linkService.addLink(l2);
