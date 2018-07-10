@@ -1,11 +1,14 @@
 package com.gmail.gm.jcant.JLinkManagement;
 
+import com.gmail.gm.jcant.JDate.JDate;
 import com.gmail.gm.jcant.JLinkManagement.DomainRouting.JDomainRequestMappingHandlerMapping;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Advertising.JAdvertising;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Advertising.JAdvertisingService;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Article.JArticle;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Article.JArticleService;
+import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLink;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLinkService;
+import com.gmail.gm.jcant.JLinkManagement.JPA.RootLink.JRootLink;
 import com.gmail.gm.jcant.JLinkManagement.JPA.RootLink.JRootLinkService;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUser;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserDetailServiceImpl;
@@ -98,15 +101,34 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 				articleService.addArticle(art3);
 				
 				JAdvertising adv1 = new JAdvertising("jCant Graduate Project", null, null, "Link Management", 
-						"Project sources:" + 
-						"<a target=\"_blank\" href=\"https://github.com/jcant/JLinkManagement\">GitHub</a>");
+						"Project sources: " + 
+						"<a target=\"_blank\" href=\"https://github.com/jcant/JLinkManagement\"> GitHub</a>");
 				
 				JAdvertising adv2 = new JAdvertising("prog.kiev.ua", null, null, "Java Courses", 
-						"excellent Java Academy" + 
+						"excellent Java Academy<br>" + 
 						"<a target=\"_blank\" href=\"https://prog.kiev.ua/\">https://prog.kiev.ua</a>");
 				
 				advService.addAdvertising(adv1);
 				advService.addAdvertising(adv2);
+				
+				JRootLink rl1 = new JRootLink("stark-taiga-34506.herokuapp.com/root1", true);
+				JRootLink rl2 = new JRootLink("stark-taiga-34506.herokuapp.com/root2", true);
+				
+				rlinkService.addRootLink(rl1);
+				rlinkService.addRootLink(rl2);
+				
+				Date dstart = JDate.setTime(new Date(), "0:0:0");
+				Date dfinish = JDate.incMonth(JDate.setTime(new Date(), "0:0:0"), 2);
+				JLink l1 = new JLink("stark-taiga-34506.herokuapp.com/root1/qqwwee", "google.com", admin, dstart, dfinish, true, true);
+				JLink l2 = new JLink("stark-taiga-34506.herokuapp.com/root1/superadminlink", "gmail.com", admin, dstart, dfinish, true, false);
+				JLink l3 = new JLink("stark-taiga-34506.herokuapp.com/root1/aassdd", "yahoo.com", user, dstart, dfinish, true, true);
+				JLink l4 = new JLink("stark-taiga-34506.herokuapp.com/root1/superuserlink", "github.com", user, dstart, dfinish, true, false);
+				
+				linkService.addLink(l1);
+				linkService.addLink(l2);
+				linkService.addLink(l3);
+				linkService.addLink(l4);
+				
 				
 			}
 		};
