@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value = "/")
-@JDomain(property = "frontend.domains")
+//@JDomain(property = "frontend.domains")
 public class FrontEndController {
 
     @Autowired
