@@ -27,7 +27,8 @@ public class RedirectController {
     @RequestMapping("/")
     public RedirectView index(HttpServletRequest request) throws JLinkException {
 
-        JLink link = linkService.getByUrlActualEnabled(request.getRequestURL().toString(), new Date());
+        //JLink link = linkService.getByUrlActualEnabled(request.getRequestURL().toString(), new Date());
+        JLink link = linkService.getByUrlActualEnabled(getRequestDomain(request), new Date());
         if (link != null) {
             linkClickService.SaveLinkClick(link, request);
         	//return "redirect:" + link.getTarget();
@@ -43,7 +44,8 @@ public class RedirectController {
     @RequestMapping("/{shortcut}")
     public RedirectView indexWithURI(HttpServletRequest request) throws JLinkException {
     	
-        JLink link = linkService.getByUrlActualEnabled(request.getRequestURL().toString(), new Date());
+        //JLink link = linkService.getByUrlActualEnabled(request.getRequestURL().toString(), new Date());
+        JLink link = linkService.getByUrlActualEnabled(getRequestDomain(request), new Date());
         if (link != null) {
             linkClickService.SaveLinkClick(link, request);
         	//return "redirect:" + link.getTarget();
@@ -62,5 +64,26 @@ public class RedirectController {
     	}else {
     		return "http://"+result;
     	}
+    }
+    
+    
+    private String getRequestDomain(HttpServletRequest request) {
+
+        String scheme = request.getScheme();
+        String name = request.getServerName();
+        String uri = request.getRequestURI();
+        String port = "" + request.getServerPort();
+        String url = scheme + "://" + name;
+        
+        //for now, we exclude server port info:
+        //if (!port.equals("")) {
+        //    url += ":" + port;
+        //}
+        
+        if (!uri.equals("")) {
+        	url += "/" + uri;
+        }
+
+        return url;
     }
 }
