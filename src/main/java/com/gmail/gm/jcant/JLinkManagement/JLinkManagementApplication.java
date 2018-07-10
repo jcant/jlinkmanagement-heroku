@@ -111,18 +111,20 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 				advService.addAdvertising(adv1);
 				advService.addAdvertising(adv2);
 				
-				JRootLink rl1 = new JRootLink("jlink-management.herokuapp.com/root1", true);
-				JRootLink rl2 = new JRootLink("jlink-management.herokuapp.com/root2", true);
+				JRootLink rl1 = new JRootLink("short3-domain-name.herokuapp.com", false);
+				JRootLink rl2 = new JRootLink("short2-domain-name.herokuapp.com", false);
+				JRootLink rl3 = new JRootLink("short-domain-name.herokuapp.com", true);
 				
 				rlinkService.addRootLink(rl1);
 				rlinkService.addRootLink(rl2);
+				rlinkService.addRootLink(rl3);
 				
 				Date dstart = JDate.setTime(new Date(), "0:0:0");
 				Date dfinish = JDate.incMonth(JDate.setTime(new Date(), "0:0:0"), 2);
-				JLink l1 = new JLink("jlink-management.herokuapp.com/root1/qqwwee", "google.com", admin, dstart, dfinish, true, true);
-				JLink l2 = new JLink("jlink-management.herokuapp.com/root1/superadminlink", "gmail.com", admin, dstart, dfinish, true, false);
-				JLink l3 = new JLink("jlink-management.herokuapp.com/root2/aassdd", "yahoo.com", ouser, dstart, dfinish, true, true);
-				JLink l4 = new JLink("jlink-management.herokuapp.com/root2/superuserlink", "github.com", ouser, dstart, dfinish, true, false);
+				JLink l1 = new JLink("short-domain-name.herokuapp.com/qqwwee", "google.com", admin, dstart, dfinish, true, true);
+				JLink l2 = new JLink("short-domain-name.herokuapp.com/superadminlink", "gmail.com", admin, dstart, dfinish, true, false);
+				JLink l3 = new JLink("short-domain-name.herokuapp.com/aassdd", "yahoo.com", ouser, dstart, dfinish, true, true);
+				JLink l4 = new JLink("short-domain-name.herokuapp.com/superuserlink", "github.com", ouser, dstart, dfinish, true, false);
 				
 				linkService.addLink(l1);
 				linkService.addLink(l2);
