@@ -121,10 +121,10 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 				
 				Date dstart = JDate.incDay(JDate.setTime(new Date(), "0:0:1"), -1);
 				Date dfinish = JDate.incMonth(JDate.setTime(new Date(), "0:0:1"), 2);
-				JLink l1 = new JLink("short-domain-name.herokuapp.com/qqwwee", "google.com", admin, dstart, dfinish, true, true);
-				JLink l2 = new JLink("short-domain-name.herokuapp.com/superadminlink", "gmail.com", admin, dstart, dfinish, true, false);
-				JLink l3 = new JLink("short-domain-name.herokuapp.com/aassdd", "yahoo.com", ouser, dstart, dfinish, true, true);
-				JLink l4 = new JLink("short-domain-name.herokuapp.com/superuserlink", "github.com", ouser, dstart, dfinish, true, false);
+				JLink l1 = new JLink("https://short-domain-name.herokuapp.com/qqwwee", "google.com", admin, dstart, dfinish, true, true);
+				JLink l2 = new JLink("https://short-domain-name.herokuapp.com/superadminlink", "gmail.com", admin, dstart, dfinish, true, false);
+				JLink l3 = new JLink("https://short-domain-name.herokuapp.com/aassdd", "yahoo.com", ouser, dstart, dfinish, true, true);
+				JLink l4 = new JLink("https://short-domain-name.herokuapp.com/superuserlink", "github.com", ouser, dstart, dfinish, true, false);
 				
 				linkService.addLink(l1);
 				linkService.addLink(l2);

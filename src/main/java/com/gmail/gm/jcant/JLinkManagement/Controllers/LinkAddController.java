@@ -75,10 +75,10 @@ public class LinkAddController {
     	link.setStartDate(new Date());
     	
     	if (linkMode.equals("subdomain")) {
-			link.setUrl("http://" + checkURL + "." + rootLinks + "/");
+			link.setUrl("https://" + checkURL + "." + rootLinks + "/");
 		}
 		if (linkMode.equals("parameter")) {
-			link.setUrl("http://" + rootLinks + "/" + checkURL);
+			link.setUrl("https://" + rootLinks + "/" + checkURL);
 		}
 		
 		if (!linkService.isFreeByUrl(link.getUrl())) {
