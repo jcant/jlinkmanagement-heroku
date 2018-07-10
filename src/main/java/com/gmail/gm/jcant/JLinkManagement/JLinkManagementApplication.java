@@ -1,6 +1,8 @@
 package com.gmail.gm.jcant.JLinkManagement;
 
 import com.gmail.gm.jcant.JLinkManagement.DomainRouting.JDomainRequestMappingHandlerMapping;
+import com.gmail.gm.jcant.JLinkManagement.JPA.Advertising.JAdvertising;
+import com.gmail.gm.jcant.JLinkManagement.JPA.Advertising.JAdvertisingService;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Article.JArticle;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Article.JArticleService;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLinkService;
@@ -58,7 +60,8 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 		final JUserService userService, 
 		final JLinkService linkService, 
 		final JRootLinkService rlinkService,
-		final JArticleService articleService) {
+		final JArticleService articleService,
+		final JAdvertisingService advService) {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... strings) throws Exception {
@@ -93,19 +96,18 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 				articleService.addArticle(art1);
 				articleService.addArticle(art2);
 				articleService.addArticle(art3);
-
-//				linkService.addLink(new JLink("http://u1.short2.jca:8080/", "http://google.com", admin, new Date(), new Date()));
-//				linkService.addLink(new JLink("http://u2.short2.jca:8080/", "http://gmail.com", admin, new Date(), new Date()));
-//				linkService.addLink(new JLink("q3.com", "jcant.linkedin.com", admin, new Date(), new Date()));
-//
-//				linkService.addLink(new JLink("u1.com", "user.facebook.com", user, new Date(), new Date()));
-//				linkService.addLink(new JLink("u2.com", "user.twitter.com", user, new Date(), new Date()));
-//
-//				rlinkService.addRootLink(new JRootLink("short2.jca:8080"));
-//				rlinkService.addRootLink(new JRootLink("short3.jca:8080"));
-
-				//non unique url - must throws an exception
-				//linkService.addLink(new JLink("u2.com", "user.linkedin.com", user, new Date(), new Date()));
+				
+				JAdvertising adv1 = new JAdvertising("jCant Graduate Project", null, null, "Link Management", 
+						"Project sources:" + 
+						"<a target=\"_blank\" href=\"https://github.com/jcant/JLinkManagement\">GitHub</a>");
+				
+				JAdvertising adv2 = new JAdvertising("prog.kiev.ua", null, null, "Java Courses", 
+						"excellent Java Academy" + 
+						"<a target=\"_blank\" href=\"https://prog.kiev.ua/\">https://prog.kiev.ua</a>");
+				
+				advService.addAdvertising(adv1);
+				advService.addAdvertising(adv2);
+				
 			}
 		};
 	}
