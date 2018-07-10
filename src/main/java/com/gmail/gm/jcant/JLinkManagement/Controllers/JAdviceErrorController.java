@@ -11,7 +11,7 @@ import com.gmail.gm.jcant.JLinkManagement.JPA.JOperationInfo;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserException;
 
 //@ControllerAdvice
-@RestController
+//@RestController
 public class JAdviceErrorController {
 
 	@ExceptionHandler(Exception.class)

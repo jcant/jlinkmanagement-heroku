@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gmail.gm.jcant.JDate.JDate;
 
-@Controller
+//@Controller
 public class JErrorController implements ErrorController{
 
 	
