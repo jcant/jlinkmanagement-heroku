@@ -6,6 +6,8 @@ import com.gmail.gm.jcant.JLinkManagement.JPA.RootLink.JRootLinkService;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserDetailServiceImpl;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserRole;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserService;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUser;
 
 import java.util.Properties;
@@ -43,6 +45,9 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 
     @Value("${hbm2ddl.auto}")
     private String hbm2dllAuto;
+
+    @Value("${spring.datasource.url}")
+	private String dbUrl;
 
     //@Autowired
     //private JUserService userService;
@@ -165,4 +170,15 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
     //     System.out.println("********** in dataSource()");
     //     return DataSourceBuilder.create().build();
     // }
+
+    @Bean
+	public DataSource dataSource()  {
+    // if (dbUrl == null || dbUrl.isEmpty()) {
+    //   return new HikariDataSource();
+    // } else {
+      HikariConfig config = new HikariConfig();
+      config.setJdbcUrl(dbUrl);
+      return new HikariDataSource(config);
+    // }
+	}
 }
