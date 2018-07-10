@@ -3,7 +3,6 @@
 /RemoteSystemsTempFiles/
 /Servers/
 
-target/
 .idea/
 .settings/
 .classpath
