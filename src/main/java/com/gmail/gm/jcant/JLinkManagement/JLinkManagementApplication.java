@@ -69,10 +69,10 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 			@Override
 			public void run(String... strings) throws Exception {
 				JUser admin = new JUser("admin", "$2a$10$mvuMNa9iOkNJK1LyWLPj9uh.xaICWGjC78iRZkkdF9auHDjZLbjx.", JUserRole.ADMIN);
-				JUser user = new JUser("user", "$2a$10$mvuMNa9iOkNJK1LyWLPj9uh.xaICWGjC78iRZkkdF9auHDjZLbjx.", JUserRole.USER);
+				JUser ouser = new JUser("user", "$2a$10$mvuMNa9iOkNJK1LyWLPj9uh.xaICWGjC78iRZkkdF9auHDjZLbjx.", JUserRole.USER);
 
 				userService.addUser(admin);
-				userService.addUser(user);
+				userService.addUser(ouser);
 
 				JArticle art1 = new JArticle(new Date(), null, null, "Weclome!", 
 					"It's good to see you here!<br>"+
@@ -111,18 +111,18 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 				advService.addAdvertising(adv1);
 				advService.addAdvertising(adv2);
 				
-				JRootLink rl1 = new JRootLink("stark-taiga-34506.herokuapp.com/root1", true);
-				JRootLink rl2 = new JRootLink("stark-taiga-34506.herokuapp.com/root2", true);
+				JRootLink rl1 = new JRootLink("jlink-management.herokuapp.com/root1", true);
+				JRootLink rl2 = new JRootLink("jlink-management.herokuapp.com/root2", true);
 				
 				rlinkService.addRootLink(rl1);
 				rlinkService.addRootLink(rl2);
 				
 				Date dstart = JDate.setTime(new Date(), "0:0:0");
 				Date dfinish = JDate.incMonth(JDate.setTime(new Date(), "0:0:0"), 2);
-				JLink l1 = new JLink("stark-taiga-34506.herokuapp.com/root1/qqwwee", "google.com", admin, dstart, dfinish, true, true);
-				JLink l2 = new JLink("stark-taiga-34506.herokuapp.com/root1/superadminlink", "gmail.com", admin, dstart, dfinish, true, false);
-				JLink l3 = new JLink("stark-taiga-34506.herokuapp.com/root1/aassdd", "yahoo.com", admin, dstart, dfinish, true, true);
-				JLink l4 = new JLink("stark-taiga-34506.herokuapp.com/root1/superuserlink", "github.com", admin, dstart, dfinish, true, false);
+				JLink l1 = new JLink("jlink-management.herokuapp.com/root1/qqwwee", "google.com", admin, dstart, dfinish, true, true);
+				JLink l2 = new JLink("jlink-management.herokuapp.com/root1/superadminlink", "gmail.com", admin, dstart, dfinish, true, false);
+				JLink l3 = new JLink("jlink-management.herokuapp.com/root2/aassdd", "yahoo.com", ouser, dstart, dfinish, true, true);
+				JLink l4 = new JLink("jlink-management.herokuapp.com/root2/superuserlink", "github.com", ouser, dstart, dfinish, true, false);
 				
 				linkService.addLink(l1);
 				linkService.addLink(l2);
