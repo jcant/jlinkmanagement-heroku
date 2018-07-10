@@ -1,1 +1,1 @@
-java -jar target/JLinkManagement-1.0-SNAPSHOT.jar
+web: java -jar target/JLinkManagement-1.0-SNAPSHOT.jar

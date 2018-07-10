@@ -44,8 +44,8 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
     @Value("${hbm2ddl.auto}")
     private String hbm2dllAuto;
 
-    @Autowired
-    private JUserService userService;
+    //@Autowired
+    //private JUserService userService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(JLinkManagementApplication.class, args);
