@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar target/JLinkManagement-1.0-SNAPSHOT.war --port $PORT target/*.war
+java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar
