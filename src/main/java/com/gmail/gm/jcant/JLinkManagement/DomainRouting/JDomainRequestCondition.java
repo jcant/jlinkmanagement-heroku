@@ -27,13 +27,13 @@ public class JDomainRequestCondition implements RequestCondition<JDomainRequestC
         String requestDomain = getRequestDomain(request);
 
         for (String domain : jDomainValue) {
-            //System.out.print("getMatchingCondition: request="+requestDomain+" condition="+domain);
+            System.out.print("getMatchingCondition: request="+requestDomain+" condition="+domain);
         	if (requestDomain.toLowerCase().endsWith(domain.toLowerCase())) {
-                //System.out.println("   - true");
+                System.out.println("   - true");
         		condition = this;
                 break;
             }
-        	//System.out.println("   - false");
+        	System.out.println("   - false");
         }
 
         return condition;
