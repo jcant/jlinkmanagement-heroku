@@ -119,8 +119,8 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 				rlinkService.addRootLink(rl2);
 				rlinkService.addRootLink(rl3);
 				
-				Date dstart = JDate.setTime(new Date(), "0:0:0");
-				Date dfinish = JDate.incMonth(JDate.setTime(new Date(), "0:0:0"), 2);
+				Date dstart = JDate.incDay(JDate.setTime(new Date(), "0:0:1"), -1);
+				Date dfinish = JDate.incMonth(JDate.setTime(new Date(), "0:0:1"), 2);
 				JLink l1 = new JLink("short-domain-name.herokuapp.com/qqwwee", "google.com", admin, dstart, dfinish, true, true);
 				JLink l2 = new JLink("short-domain-name.herokuapp.com/superadminlink", "gmail.com", admin, dstart, dfinish, true, false);
 				JLink l3 = new JLink("short-domain-name.herokuapp.com/aassdd", "yahoo.com", ouser, dstart, dfinish, true, true);
