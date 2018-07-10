@@ -29,7 +29,7 @@ public class JLinkClickServiceImpl implements JLinkClickService{
 	@Override
 	public JStatistics getStatsForLink(JLink link) {
 		Date day = JDate.setTime(new Date(), "00:00:00");
-		int allCnt = lcRep.countLinkToDate(link, null);
+		int allCnt = lcRep.countLink(link);
 		int dayCnt = lcRep.countLinkToDate(link, day);
 		int weekCnt = lcRep.countLinkToDate(link, JDate.incDay(day, -7));
 		int monthCnt = lcRep.countLinkToDate(link, JDate.incMonth(day, -1));

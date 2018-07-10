@@ -18,7 +18,10 @@ public interface JLinkClickRepository extends JpaRepository<JLinkClick, Long> {
 //    @Query("SELECT lc FROM JLinkClick lc JOIN lc.link l WHERE l.user = :user")
 //    List<JLinkClick> getByUser(@Param("user") JUser user);
     
-    @Query("SELECT count(lc) FROM JLinkClick lc WHERE lc.link = :link AND (:date = null OR lc.date>=:date)")
+    @Query("SELECT count(lc) FROM JLinkClick lc WHERE lc.link = :link AND lc.date>=:date")
     int countLinkToDate(@Param("link") JLink link, @Param("date") Date date);
+    
+    @Query("SELECT count(lc) FROM JLinkClick lc WHERE lc.link = :link")
+    int countLink(@Param("link") JLink link);
     
 }
