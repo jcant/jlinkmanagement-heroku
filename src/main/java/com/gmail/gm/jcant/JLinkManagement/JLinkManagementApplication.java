@@ -1,29 +1,28 @@
 package com.gmail.gm.jcant.JLinkManagement;
 
 import com.gmail.gm.jcant.JLinkManagement.DomainRouting.JDomainRequestMappingHandlerMapping;
+import com.gmail.gm.jcant.JLinkManagement.JPA.Article.JArticle;
+import com.gmail.gm.jcant.JLinkManagement.JPA.Article.JArticleService;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLinkService;
 import com.gmail.gm.jcant.JLinkManagement.JPA.RootLink.JRootLinkService;
+import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUser;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserDetailServiceImpl;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserRole;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserService;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUser;
 
+import java.util.Date;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -49,16 +48,17 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
     @Value("${spring.datasource.url}")
 	private String dbUrl;
 
-    //@Autowired
-    //private JUserService userService;
-
 	public static void main(String[] args) {
 		SpringApplication.run(JLinkManagementApplication.class, args);
 	}
 
 
 	@Bean
-	public CommandLineRunner demo(final JUserService userService, final JLinkService linkService, final JRootLinkService rlinkService) {
+	public CommandLineRunner demo(
+		final JUserService userService, 
+		final JLinkService linkService, 
+		final JRootLinkService rlinkService,
+		final JArticleService articleService) {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... strings) throws Exception {
@@ -67,6 +67,32 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 
 				userService.addUser(admin);
 				userService.addUser(user);
+
+				JArticle art1 = new JArticle(new Date(), null, null, "Weclome!", 
+					"It's good to see you here!<br>"+
+					"This is a test project of the redirect platform. You can try the user and admin functionality, as well as the basic <strong>redirect functionality.</strong><br>"+
+					"In view of hosting restrictions, the redirect works only on references of the type http://sitename.com/your_link</br>"+
+					"</br>"+
+					"You can register a new user or log in as an administrator or ordinaly user:", 
+					admin);
+
+				JArticle art2 = new JArticle(new Date(), null, null, "Admin", 
+					"to Auth as an ADMIN, please input:<br>"+
+					"<br>"+
+					"login: <strong>admin</strong><br>"+
+					"password: <strong>password</strong>", 
+					admin);
+
+				JArticle art3 = new JArticle(new Date(), null, null, "User", 
+					"to Auth as an USER, please input:<br>"+
+					"<br>"+
+					"login: <strong>user</strong><br>"+
+					"password: <strong>password</strong>", 
+					admin);
+				
+				articleService.addArticle(art1);
+				articleService.addArticle(art2);
+				articleService.addArticle(art3);
 
 //				linkService.addLink(new JLink("http://u1.short2.jca:8080/", "http://google.com", admin, new Date(), new Date()));
 //				linkService.addLink(new JLink("http://u2.short2.jca:8080/", "http://gmail.com", admin, new Date(), new Date()));
@@ -163,22 +189,10 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 		return handlerMapping;
 	}
 
-    // @Bean
-    // @Primary
-    // @ConfigurationProperties(prefix = "spring.datasource")
-    // public DataSource dataSource() {
-    //     System.out.println("********** in dataSource()");
-    //     return DataSourceBuilder.create().build();
-    // }
-
     @Bean
 	public DataSource dataSource()  {
-    // if (dbUrl == null || dbUrl.isEmpty()) {
-    //   return new HikariDataSource();
-    // } else {
       HikariConfig config = new HikariConfig();
       config.setJdbcUrl(dbUrl);
       return new HikariDataSource(config);
-    // }
 	}
 }
