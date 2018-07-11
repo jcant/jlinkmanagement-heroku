@@ -30,13 +30,14 @@ public class RedirectController {
         //JLink link = linkService.getByUrlActualEnabled(request.getRequestURL().toString(), new Date());
         JLink link = linkService.getByUrlActualEnabled(getRequestDomain(request), new Date());
         if (link != null) {
+        	System.out.println("**** 1)Redirect to link: "+link);
             linkClickService.SaveLinkClick(link, request);
         	//return "redirect:" + link.getTarget();
         	RedirectView rv = new RedirectView(wrapTarget(link.getTarget()), true);
     		rv.setExposeModelAttributes(false);
     		return rv;
         } else {
-        	throw new JLinkException("Wrong link requested! " + request.getRequestURL().toString());
+        	throw new JLinkException("Wrong link requested! " + getRequestDomain(request));
         }
 
     }
@@ -47,13 +48,14 @@ public class RedirectController {
         //JLink link = linkService.getByUrlActualEnabled(request.getRequestURL().toString(), new Date());
         JLink link = linkService.getByUrlActualEnabled(getRequestDomain(request), new Date());
         if (link != null) {
-            linkClickService.SaveLinkClick(link, request);
+            System.out.println("**** 2)Redirect to link: "+link);
+        	linkClickService.SaveLinkClick(link, request);
         	//return "redirect:" + link.getTarget();
         	RedirectView rv = new RedirectView(wrapTarget(link.getTarget()), true);
     		rv.setExposeModelAttributes(false);
     		return rv;
         } else {
-            throw new JLinkException("Wrong link requested! " + request.getRequestURL().toString());
+            throw new JLinkException("Wrong link requested! " + getRequestDomain(request));
         }
     }
     
@@ -81,7 +83,7 @@ public class RedirectController {
         //}
         
         if (!uri.equals("")) {
-        	url += "/" + uri;
+        	url += uri;
         }
 
         return url;
