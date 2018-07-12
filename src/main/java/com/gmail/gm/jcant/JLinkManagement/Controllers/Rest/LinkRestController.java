@@ -144,7 +144,7 @@ public class LinkRestController {
 	private String generateRandLink(String rootUrl) {
 		String result = "";
 		do {
-			result = "http://" + rootUrl + "/" + getRandomString(randomStringLenght);
+			result = "https://" + rootUrl + "/" + getRandomString(randomStringLenght);
 		} while (!linkService.isFreeByUrl(result));
 
 		return result;
