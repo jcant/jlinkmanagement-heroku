@@ -2,12 +2,14 @@ package com.gmail.gm.jcant.JLinkManagement.JPA.LinkClick;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
 
 import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLink;
 
@@ -17,7 +19,7 @@ public class JLinkClick {
 	@GeneratedValue
 	private long id;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "link_id")
 	private JLink link;
 
