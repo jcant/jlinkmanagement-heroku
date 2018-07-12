@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gmail.gm.jcant.JDate.JDate;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLink;
+import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLinkException;
 import com.gmail.gm.jcant.JLinkManagement.Statistics.JStatistics;
 
 @Service
@@ -20,9 +21,9 @@ public class JLinkClickServiceImpl implements JLinkClickService{
 
 	@Override
 	@Transactional
-	public void SaveLinkClick(JLink link, HttpServletRequest request) {
+	public void SaveLinkClick(JLink link, HttpServletRequest request) throws JLinkException {
 		if ((link == null)||(request == null)) {
-			//throw new exception...
+			throw new JLinkException("Can't save LinkClick info about null Link!");
 		}
 		JLinkClick lc = new JLinkClick(link, new Date(), request.getRemoteAddr());
 		lcRep.save(lc);

@@ -69,7 +69,7 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... strings) throws Exception {
-				//initDB(userService, linkService, rlinkService, articleService, advService);
+				initDB(userService, linkService, rlinkService, articleService, advService);
 			}
 		};
 	}

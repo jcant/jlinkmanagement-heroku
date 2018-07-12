@@ -21,7 +21,7 @@ public class JLinkClick {
 	@GeneratedValue
 	private long id;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "link_id")
 	private JLink link;
 
