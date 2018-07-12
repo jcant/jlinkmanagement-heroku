@@ -19,7 +19,7 @@ public class JLinkClick {
 	@GeneratedValue
 	private long id;
 
-	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "link_id")
 	private JLink link;
 
