@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gmail.gm.jcant.JLinkManagement.JPA.LinkClick.JLinkClickRepository;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUser;
 
 @Service
@@ -14,6 +15,8 @@ public class JLinkServiceImpl implements JLinkService{
 	
 	@Autowired
     private JLinkRepository linkRepository;
+	@Autowired
+    private JLinkClickRepository linkClickRepository;
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -26,6 +29,7 @@ public class JLinkServiceImpl implements JLinkService{
 	}
 
     @Override
+    @Transactional(readOnly = true)
     public JLink getByUrlActualEnabled(String url, Date date) {
         return linkRepository.getByUrlActualEnabled(url, date);
     }
@@ -37,6 +41,7 @@ public class JLinkServiceImpl implements JLinkService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public boolean isFreeByUrl(String url) {
         return linkRepository.isFreeByUrlOnDate(url, new Date());
     }
@@ -54,13 +59,13 @@ public class JLinkServiceImpl implements JLinkService{
     }
     
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<JLink> findByUserAll(JUser user, Date date) {
         return linkRepository.findByUserAll(user, date);
     }
     
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<JLink> findByUserFree(JUser user, Date date) {
         if (date != null) {
         	return linkRepository.findByUserFreeDate(user, date);
@@ -70,7 +75,7 @@ public class JLinkServiceImpl implements JLinkService{
     }
     
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<JLink> findByUserPaid(JUser user, Date date) {
     	if (date != null) {
         	return linkRepository.findByUserPaidDate(user, date);
@@ -80,10 +85,12 @@ public class JLinkServiceImpl implements JLinkService{
     }
     
     @Override
+    @Transactional
     public void deleteById(long id) throws JLinkException {
         if (!linkRepository.existsById(id)){
             throw new JLinkException("Can't delete: NO Link with such id="+id);
         }
+        linkClickRepository.deleteByLinkId(id);
         linkRepository.deleteById(id);
     }
 

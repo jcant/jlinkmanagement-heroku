@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gmail.gm.jcant.JDate.JDate;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLink;
@@ -18,6 +19,7 @@ public class JLinkClickServiceImpl implements JLinkClickService{
     private JLinkClickRepository lcRep;
 
 	@Override
+	@Transactional
 	public void SaveLinkClick(JLink link, HttpServletRequest request) {
 		if ((link == null)||(request == null)) {
 			//throw new exception...
@@ -27,6 +29,7 @@ public class JLinkClickServiceImpl implements JLinkClickService{
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public JStatistics getStatsForLink(JLink link) {
 		Date day = JDate.setTime(new Date(), "00:00:00");
 		int allCnt = lcRep.countLink(link);
