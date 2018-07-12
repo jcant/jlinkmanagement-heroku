@@ -58,7 +58,7 @@ public class JDomainRequestCondition implements RequestCondition<JDomainRequestC
 
         String scheme = request.getScheme();
         String name = request.getServerName();
-        String port = "" + request.getServerPort();
+        //String port = "" + request.getServerPort();
         String url = scheme + "://" + name;
         
         //for now, we exclude server port info:

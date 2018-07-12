@@ -74,7 +74,7 @@ public class RedirectController {
         String scheme = request.getScheme();
         String name = request.getServerName();
         String uri = request.getRequestURI();
-        String port = "" + request.getServerPort();
+        //String port = "" + request.getServerPort();
         String url = scheme + "://" + name;
         
         //for now, we exclude server port info:

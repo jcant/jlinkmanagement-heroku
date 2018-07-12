@@ -1,23 +1,23 @@
 package com.gmail.gm.jcant.JLinkManagement;
 
-import com.gmail.gm.jcant.JDate.JDate;
+//import com.gmail.gm.jcant.JDate.JDate;
 import com.gmail.gm.jcant.JLinkManagement.DomainRouting.JDomainRequestMappingHandlerMapping;
-import com.gmail.gm.jcant.JLinkManagement.JPA.Advertising.JAdvertising;
+//import com.gmail.gm.jcant.JLinkManagement.JPA.Advertising.JAdvertising;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Advertising.JAdvertisingService;
-import com.gmail.gm.jcant.JLinkManagement.JPA.Article.JArticle;
+//import com.gmail.gm.jcant.JLinkManagement.JPA.Article.JArticle;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Article.JArticleService;
-import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLink;
+//import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLink;
 import com.gmail.gm.jcant.JLinkManagement.JPA.Link.JLinkService;
-import com.gmail.gm.jcant.JLinkManagement.JPA.RootLink.JRootLink;
+//import com.gmail.gm.jcant.JLinkManagement.JPA.RootLink.JRootLink;
 import com.gmail.gm.jcant.JLinkManagement.JPA.RootLink.JRootLinkService;
-import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUser;
+//import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUser;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserDetailServiceImpl;
-import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserRole;
+//import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserRole;
 import com.gmail.gm.jcant.JLinkManagement.JPA.User.JUserService;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-import java.util.Date;
+//import java.util.Date;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
@@ -89,7 +89,7 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
 //					"password: <strong>password</strong>",
 //					admin);
 //
-				// JArticle art3 = new JArticle(new Date(), null, null, "User", 
+				// JArticle art3 = new JArticle(new Date(), null, null, "User",
 				// 	"to Auth as an USER, please input:<br>"+
 				// 	"<br>"+
 				// 	"login: <strong>user</strong><br>"+
@@ -98,8 +98,8 @@ public class JLinkManagementApplication extends WebMvcConfigurationSupport{
         //
         // JArticle art4 = new JArticle(new Date(), null, null, "Redirecting",
         //   "Due to "heroku" limitations You may create links based on only one root link: <strong>short-domain-name.herokuapp.com</strong><br>"+
-        //   "and only like <strong>short-domain-name.herokuapp.com/YOURWORLD</strong><br>"+
-        //   "(you can't create links like this: <strong>YOURWORLD.short-domain-name.herokuapp.com</strong>)",
+        //   "and only like <strong>short-domain-name.herokuapp.com/YOURWORD</strong><br>"+
+        //   "(you can't create links like this: <strong>YOURWORD.short-domain-name.herokuapp.com</strong>)",
         //   admin);
         //
         // JArticle art5 = new JArticle(new Date(), null, null, "Redirecting",
