@@ -16,7 +16,10 @@ public interface JLinkClickRepository extends JpaRepository<JLinkClick, Long> {
     @Query("SELECT count(lc) FROM JLinkClick lc WHERE lc.link = :link")
     int countLink(@Param("link") JLink link);
     
-    @Query("DELETE FROM JLinkClick lc WHERE lc.link.id = :link.id")
+    @Query("DELETE FROM JLinkClick lc WHERE lc.link = :link")
     void deleteByLink(@Param("link") JLink link);
+    
+    @Query("DELETE FROM JLinkClick lc WHERE lc.link.id = :linkId")
+    void deleteByLinkId(@Param("linkId") long linkId);
     
 }
