@@ -87,12 +87,13 @@ public class JLinkServiceImpl implements JLinkService{
     @Override
     @Transactional
     public void deleteById(long id) throws JLinkException {
-        JLink link = linkRepository.getOne(id);
-    	//if (!linkRepository.existsById(id)){
-        if (link == null) {
+        //JLink link = linkRepository.getOne(id);
+    	if (!linkRepository.existsById(id)){
+        //if (link == null) {
             throw new JLinkException("Can't delete: NO Link with such id="+id);
         }
-        linkClickRepository.deleteByLink(link);
+        //linkClickRepository.deleteByLink(link);
+    	linkClickRepository.deleteByLinkId(id);
         linkRepository.deleteById(id);
     }
 
